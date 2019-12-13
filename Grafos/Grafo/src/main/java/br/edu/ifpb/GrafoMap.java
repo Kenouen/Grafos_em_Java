@@ -28,8 +28,6 @@ public class GrafoMap extends Grafo {
             throw new ArestaException(String.format("Aresta %s inválida! Falta %s na lista de vértices!", a, a.getVerticeB()));
         if (grafo.containsKey(num))
             throw new ArestaException(String.format("Aresta com número %d já existe!", num));
-        if (grafo.containsValue(a))
-            throw new ArestaException(String.format("Aresta %s já existe!", a));
         grafo.put(num, a);
     }
     public void removerAresta(Aresta a) throws ArestaException {

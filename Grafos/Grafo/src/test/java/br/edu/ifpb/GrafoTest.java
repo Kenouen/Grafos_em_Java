@@ -15,15 +15,21 @@ public class GrafoTest {
             gp.adicionaAresta(new Aresta("E", "B"), 3);
             gp.adicionaAresta(new Aresta("D", "J"), 4);
             System.out.println(gp);
-        } catch (ArestaException e) {
+        }
+        catch (ArestaException e) {
             System.err.println(e.getMessage());
         }
     }
     @Test
-    public void testeGrafoList() throws ArestaException {
-        GrafoList gl = new GrafoList(new String[]{"A", "B", "C", "D", "E"});
-        gl.adicionarAresta(new Aresta("B", "A"));
-        System.out.println(gl);
-
+    public void testeGrafoList() {
+        try {
+            GrafoList gl = new GrafoList(new String[]{"A", "B", "C", "D", "E"});
+            gl.adicionarAresta(new Aresta("B", "A"));
+            gl.removerAresta(new Aresta("B", "A"));
+            System.out.println(gl);
+        }
+        catch (ArestaException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

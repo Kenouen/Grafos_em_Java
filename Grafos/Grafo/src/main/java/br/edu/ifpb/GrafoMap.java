@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 public class GrafoMap extends Grafo {
     private Map<Integer, Aresta> grafo;
 
-    public GrafoMap() {
-        super();
-        grafo = new TreeMap<>();
-    }
     public GrafoMap(String[] vertices) {
         super(vertices);
         grafo = new TreeMap<>();

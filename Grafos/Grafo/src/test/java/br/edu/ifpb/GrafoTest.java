@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class GrafoTest {
     @Test
-    public void teste() {
+    public void testeGrafoMap() {
         try {
             GrafoMap gp = new GrafoMap(new String[]{"A", "B", "C", "D", "E"});
             gp.adicionaAresta(new Aresta("A", "B"), 1);
@@ -18,5 +18,12 @@ public class GrafoTest {
         } catch (ArestaException e) {
             System.err.println(e.getMessage());
         }
+    }
+    @Test
+    public void testeGrafoList() throws ArestaException {
+        GrafoList gl = new GrafoList(new String[]{"A", "B", "C", "D", "E"});
+        gl.adicionarAresta(new Aresta("B", "A"));
+        System.out.println(gl);
+
     }
 }

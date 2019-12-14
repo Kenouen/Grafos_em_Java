@@ -3,7 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Aresta" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Aresta/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Exceptions" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exceptions/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Grafo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Grafo/src/main/java" charset="UTF-8" />
   </component>
 </project>

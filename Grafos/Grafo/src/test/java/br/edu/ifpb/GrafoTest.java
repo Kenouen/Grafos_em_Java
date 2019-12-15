@@ -24,11 +24,10 @@ public class GrafoTest {
     public void testeGrafoList() {
         try {
             GrafoList gl = new GrafoList(new String[]{"A", "B", "C", "D", "E"});
-            gl.adicionarAresta(new Aresta("B", "A"));
-            gl.removerAresta(new Aresta("B", "A"));
+            gl.adicionarVertice("F");
+            gl.adicionarVertice("G");
             System.out.println(gl);
-        }
-        catch (ArestaException e) {
+        } catch (VerticeException e) {
             System.err.println(e.getMessage());
         }
     }

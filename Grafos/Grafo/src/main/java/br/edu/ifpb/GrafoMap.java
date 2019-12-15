@@ -1,20 +1,19 @@
 package br.edu.ifpb;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class GrafoMap extends Grafo {
-    private Map<Integer, Aresta> grafo;
+    private Map<Integer, Aresta> arestas;
 
     public GrafoMap(String[] vertices) {
         super(vertices);
-        grafo = new TreeMap<>();
+        arestas = new TreeMap<>();
     }
     public GrafoMap(String[] vertices, Map<Integer, Aresta> arestas) {
         super(vertices);
-        grafo = new TreeMap<>(arestas);
+        this.arestas = new TreeMap<>(arestas);
     }
 
     public void adicionaAresta(Aresta a, int num) throws ArestaException {
@@ -22,15 +21,15 @@ public class GrafoMap extends Grafo {
             throw new ArestaException(String.format("Aresta %s inválida! Falta %s na lista de vértices!", a, a.getVerticeA()));
         if (!vertices.contains(a.getVerticeB()))
             throw new ArestaException(String.format("Aresta %s inválida! Falta %s na lista de vértices!", a, a.getVerticeB()));
-        if (grafo.containsKey(num))
+        if (arestas.containsKey(num))
             throw new ArestaException(String.format("Aresta com número %d já existe!", num));
-        grafo.put(num, a);
+        arestas.put(num, a);
     }
     public void removerAresta(Aresta a) throws ArestaException {
-        if (grafo.containsValue(a)) {
-            for (Integer num : grafo.keySet()) {
-                if (grafo.get(num).equals(a)) {
-                    grafo.remove(num);
+        if (arestas.containsValue(a)) {
+            for (Integer num : arestas.keySet()) {
+                if (arestas.get(num).equals(a)) {
+                    arestas.remove(num);
                     break;
                 }
             }
@@ -40,8 +39,8 @@ public class GrafoMap extends Grafo {
 
     @Override
     public String toString() {
-        String aux = vertices.stream().collect(Collectors.joining(", "));
-        String aux1 = grafo.values().stream().map(Aresta::toString).collect(Collectors.joining(", "));
+        String aux = String.join(", ", vertices);
+        String aux1 = arestas.values().stream().map(Aresta::toString).collect(Collectors.joining(", "));
         return aux + "\n" + aux1;
     }
 }

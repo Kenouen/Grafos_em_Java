@@ -7,12 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Exceptions" />
+        <module name="AbstractGrafos" />
         <module name="Aresta" />
         <module name="Grafo" />
+        <module name="ConcreteGrafos" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AbstractGrafos" target="11" />
       <module name="Aresta" target="11" />
+      <module name="ConcreteGrafos" target="11" />
       <module name="Exceptions" target="11" />
       <module name="Grafo" target="11" />
       <module name="Grafos" target="11" />

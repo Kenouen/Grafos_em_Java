@@ -3,7 +3,6 @@ package br.edu.ifpb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GrafoList extends Grafo {
     protected List<List<String>> arestas;
@@ -44,19 +43,25 @@ public class GrafoList extends Grafo {
     @Override
     public void adicionarVertice(String vertice) throws VerticeException {
         super.adicionarVertice(vertice);
-        for (List i : arestas) i.add("0");
+        for (int i = 0; i < arestas.size(); i ++) {
+            arestas.get(i).add("0");
+        }
         String[] AUX = new String[vertices.size()];
         Arrays.fill(AUX, "-");
         AUX[vertices.size() - 1] = "0";
-        arestas.add(Arrays.asList(AUX));
+        arestas.add(new ArrayList<>(Arrays.asList(AUX)));
     }
 
     @Override
     public void removerVertice(String vertice) throws VerticeException {
-        for (List i : arestas) {
-            int AUX = vertices.indexOf(vertice);
-            i.remove(AUX);
+        List<String> AUX = new ArrayList<>();
+        AUX.addAll(vertices);
+        super.removerVertice(vertice);
+        int AUX1 = AUX.indexOf(vertice);
+        for (List<String> i : arestas) {
+            i.remove(AUX1);
         }
+        arestas.remove(AUX1);
     }
 
     public void adicionarAresta(Aresta a) throws ArestaException {

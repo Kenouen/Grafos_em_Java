@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - teste",
+            "request": "launch",
+            "mainClass": "br.edu.ifpb.teste",
+            "projectName": "Grafo"
+        }
+    ]
+}

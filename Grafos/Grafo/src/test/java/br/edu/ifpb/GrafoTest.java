@@ -1,6 +1,5 @@
 package br.edu.ifpb;
 
-import static org.junit.Assert.assertTrue;
 import br.edu.ifpb.VerticeException;
 
 import org.junit.Test;
@@ -25,7 +24,8 @@ public class GrafoTest {
         try {
             GrafoList gl = new GrafoList(new String[]{"A", "B", "C", "D", "E"});
             gl.adicionarVertice("F");
-            gl.adicionarVertice("G");
+            System.out.println(gl);
+            gl.removerVertice("A");
             System.out.println(gl);
         } catch (VerticeException e) {
             System.err.println(e.getMessage());

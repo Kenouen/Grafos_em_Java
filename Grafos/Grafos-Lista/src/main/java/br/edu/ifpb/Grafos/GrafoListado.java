@@ -2,7 +2,11 @@ package br.edu.ifpb.Grafos;
 
 import java.util.List;
 
-public class GrafoListado extends Grafo {
+public abstract class GrafoListado extends Grafo {
+
+    public GrafoListado() {
+        super();
+    }
 
     public GrafoListado(List<String> vertices) {
         super();
@@ -12,12 +16,17 @@ public class GrafoListado extends Grafo {
     }
 
     public GrafoListado(List<String> vertices, List<String> arestas) {
+        super();
         for (String vertex : vertices) {
             if(verticeValido(new Vertice(vertex))) adicionarVertice(vertex);
         }
         for (String aresta : arestas) {
             if(arestaValido(aresta)) adicionarAresta(aresta);
         }
+    }
+
+    public boolean adicionarPeso(String aresta, int peso){
+        return true;
     }
 
     public boolean adicionarVertice(String vertice){
@@ -40,4 +49,5 @@ public class GrafoListado extends Grafo {
         this.Arestas.add(new ArestaNDirecionada(novo1, novo2));
         return true;
     }
+
 }

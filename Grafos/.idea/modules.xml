@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Arestas/Arestas.iml" filepath="$PROJECT_DIR$/Arestas/Arestas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Grafo-Pai/GrafoPai.iml" filepath="$PROJECT_DIR$/Grafo-Pai/GrafoPai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Grafo/Grafo.iml" filepath="$PROJECT_DIR$/Grafo/Grafo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Grafos.iml" filepath="$PROJECT_DIR$/Grafos.iml" />
       <module fileurl="file://$PROJECT_DIR$/Grafos-Lista/GrafosLista.iml" filepath="$PROJECT_DIR$/Grafos-Lista/GrafosLista.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tests/Tests.iml" filepath="$PROJECT_DIR$/Tests/Tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vertices/Vertices.iml" filepath="$PROJECT_DIR$/Vertices/Vertices.iml" />
     </modules>
   </component>

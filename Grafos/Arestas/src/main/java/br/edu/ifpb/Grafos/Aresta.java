@@ -56,4 +56,13 @@ public abstract class Aresta {
     public int hashCode() {
         return Objects.hash(vertice1, vertice2);
     }
+
+    @Override
+    public String toString() {
+        return "Aresta{" +
+                "vertice1='" + vertice1 + '\'' +
+                ", vertice2='" + vertice2 + '\'' +
+                ", peso=" + peso +
+                '}';
+    }
 }

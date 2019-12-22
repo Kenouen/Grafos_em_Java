@@ -1,6 +1,7 @@
 package br.edu.ifpb;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,5 +36,20 @@ public class GrafoMapNDir extends GrafoMap {
             }
         }
         return false;
+    }
+    public String verticesIncidentes(String vertice) {
+        List<String> vertices = new ArrayList<>();
+        for (Aresta a : arestas.values()) {
+            if (a.getVerticeA().equals(vertice)) vertices.add(a.getVerticeB());
+            else if (a.getVerticeB().equals(vertice)) vertices.add(a.getVerticeA());
+        }
+        return String.join(", ", vertices);
+    }
+    public boolean ehCompleto() {
+        for (String v : vertices) {
+            List<String> verticesV = Arrays.asList(verticesIncidentes(v).split(", "));
+            if (!(verticesV.size() >= vertices.size() - 1)) return false;
+        }
+        return true;
     }
 }

@@ -9,13 +9,15 @@ public class GrafoMapNDirTest {
     @Test
     public void test() {
         try {
-            GrafoMapNDir gf = new GrafoMapNDir(new String[]{"A", "B", "C", "D", "E"});
+            GrafoMapNDir gf = new GrafoMapNDir(new String[]{"A", "B", "C"});
             gf.adicionaAresta(new Aresta("A", "B"), 1);
-            gf.adicionaAresta(new Aresta("A", "B"), 2);
-            gf.adicionaAresta(new Aresta("B", "B"), 3);
+            gf.adicionaAresta(new Aresta("B", "C"), 2);
+            gf.adicionaAresta(new Aresta("C", "A"), 3);
             System.out.println(gf.verticesNaoAdj());
             System.out.println(gf.haCiclo());
             System.out.println(gf.haArestasParalelas());
+            System.out.println(gf.verticesIncidentes("B"));
+            System.out.println(gf.ehCompleto());
         } catch (ArestaException e) {
             System.err.println(e.getMessage());
         }

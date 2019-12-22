@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import br.edu.ifpb.Aresta;
 
 public abstract class GrafoMap extends Grafo {
-    private Map<Integer, Aresta> arestas;
+    protected Map<Integer, Aresta> arestas;
 
     public GrafoMap(String[] vertices) {
         super(vertices);
@@ -36,6 +36,13 @@ public abstract class GrafoMap extends Grafo {
             }
         }
         else throw new ArestaException(String.format("Aresta %s não existe no grafo", a));
+    }
+
+    public boolean temAresta(Aresta a) {
+        for (Aresta i : arestas.values()) {
+            if (i.equals(a)) return true;
+        }
+        return false;
     }
 
     @Override

@@ -12,29 +12,29 @@ public abstract class GrafoList extends Grafo {
         super(vertice);
         arestas = new ArrayList<>();
         arestas1 = new ArrayList<>();
-        for (int i = 0; i < vertice.length; i ++) {
-            String[] array = new String[vertice.length];
-            Arrays.fill(array, "-");
-            for (int j = i; j < vertice.length; j ++) array[j] = "0";
-            arestas.add(new ArrayList<>(Arrays.asList(array)));
-        }
+//        for (int i = 0; i < vertice.length; i ++) {
+//            String[] array = new String[vertice.length];
+//            Arrays.fill(array, "-");
+//            for (int j = i; j < vertice.length; j ++) array[j] = "0";
+//            arestas.add(new ArrayList<>(Arrays.asList(array)));
+//        }
     }
     public GrafoList(String[] vertice, String[][] arestas) throws MatrizException {
         super(vertice);
         this.arestas = new ArrayList<>();
-        this.arestas1 = new ArrayList<>();
-        if (vertice.length != arestas.length)
-            throw new MatrizException(String.format("Matriz passada não possui tamanho %d", vertice.length));
-        for (String[] i : arestas)
-            if (i.length != arestas.length)
-                throw new MatrizException(String.format("Alguma sublista da matriz não possui tamanho %d", vertice.length));
-        for (String[] i : arestas) this.arestas.add(Arrays.asList(i));
-        for (int i = 0; i < this.arestas.size(); i ++) {
-            for (int j = i; j < this.arestas.size(); j ++) {
-                if (!this.arestas.get(i).get(j).equals("0"))
-                    this.arestas1.add(new Aresta(vertices.get(i), vertices.get(j)));
-            }
-        }
+        arestas1 = new ArrayList<>();
+//        if (vertice.length != arestas.length)
+//            throw new MatrizException(String.format("Matriz passada não possui tamanho %d", vertice.length));
+//        for (String[] i : arestas)
+//            if (i.length != arestas.length)
+//                throw new MatrizException(String.format("Alguma sublista da matriz não possui tamanho %d", vertice.length));
+//        for (String[] i : arestas) this.arestas.add(Arrays.asList(i));
+//        for (int i = 0; i < this.arestas.size(); i ++) {
+//            for (int j = i; j < this.arestas.size(); j ++) {
+//                if (!this.arestas.get(i).get(j).equals("0"))
+//                    this.arestas1.add(new Aresta(vertices.get(i), vertices.get(j)));
+//            }
+//        }
     }
 
     @Override
@@ -80,9 +80,9 @@ public abstract class GrafoList extends Grafo {
             else
                 throw new ArestaException(String.format("Aresta %s inválida! não existe mais aresta com %s e %s", a, a.getVerticeA(), a.getVerticeB()));
         else
-        if (!arestas.get(vertices.indexOf(a.getVerticeB())).get(vertices.indexOf(a.getVerticeA())).equals("0"))
-            arestas.get(vertices.indexOf(a.getVerticeB())).set(vertices.indexOf(a.getVerticeA())
-                    , String.format("%d", Integer.parseInt(arestas.get(vertices.indexOf(a.getVerticeB())).get(vertices.indexOf(a.getVerticeA()))) - 1));
+            if (!arestas.get(vertices.indexOf(a.getVerticeB())).get(vertices.indexOf(a.getVerticeA())).equals("0"))
+                arestas.get(vertices.indexOf(a.getVerticeB())).set(vertices.indexOf(a.getVerticeA())
+                        , String.format("%d", Integer.parseInt(arestas.get(vertices.indexOf(a.getVerticeB())).get(vertices.indexOf(a.getVerticeA()))) - 1));
         else
             throw new ArestaException(String.format("Aresta %s inválida! não existe mais aresta com %s e %s", a, a.getVerticeA(), a.getVerticeB()));
         boolean cond = false;

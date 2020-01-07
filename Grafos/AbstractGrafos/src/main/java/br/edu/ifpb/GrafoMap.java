@@ -65,6 +65,11 @@ public abstract class GrafoMap extends Grafo {
             for (int j : arestas.keySet()) {
                 if (i != j) {
                     if (arestas.get(i).equals(arestas.get(j))) return true;
+                    else {
+                        if (arestas.get(i).getVerticeA().equals(arestas.get(j).getVerticeB()) &&
+                            arestas.get(j).getVerticeA().equals(arestas.get(i).getVerticeB()))
+                                return true;
+                    }
                 }
             }
         }

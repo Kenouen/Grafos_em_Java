@@ -9,11 +9,10 @@ public class GrafoMapNDirTest {
     @Test
     public void test() {
         try {
-            GrafoMapNDir gf = new GrafoMapNDir(new String[]{"A", "B", "C"});
+            GrafoMapDir gf = new GrafoMapDir(new String[]{"A", "B", "C"});
             gf.adicionaAresta(new Aresta("A", "B"), 1);
-            gf.adicionaAresta(new Aresta("B", "A"), 4);
             gf.adicionaAresta(new Aresta("B", "C"), 2);
-            gf.adicionaAresta(new Aresta("C", "A"), 3);
+            gf.adicionaAresta(new Aresta("C", "C"), 3);
             System.out.println(gf.verticesNaoAdj());
             System.out.println(gf.haCiclo());
             System.out.println(gf.haArestasParalelas());

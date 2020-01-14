@@ -4,22 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class GrafoList extends Grafo {
+public class GrafoList extends Grafo {
     protected List<List<String>> arestas;
     protected List<Aresta> arestas1;
 
-//        if (vertice.length != arestas.length)
-//            throw new MatrizException(String.format("Matriz passada não possui tamanho %d", vertice.length));
-//        for (String[] i : arestas)
-//            if (i.length != arestas.length)
-//                throw new MatrizException(String.format("Alguma sublista da matriz não possui tamanho %d", vertice.length));
-//        for (String[] i : arestas) this.arestas.add(Arrays.asList(i));
-//        for (int i = 0; i < this.arestas.size(); i ++) {
-//            for (int j = i; j < this.arestas.size(); j ++) {
-//                if (!this.arestas.get(i).get(j).equals("0"))
-//                    this.arestas1.add(new Aresta(vertices.get(i), vertices.get(j)));
-//            }
-//        }
     public GrafoList(String[] vertice) throws MatrizException {
         super(vertice);
         this.arestas = new ArrayList<>();

@@ -10,7 +10,6 @@ import java.util.Comparator;
 
 public class GrafoMapDir extends GrafoMap {
     public GrafoMapDir(String[] vertices) { super(vertices); }
-    public GrafoMapDir(String[] vertices, Map<Integer, Aresta> arestas) { super(vertices, arestas); }
 
     @Override
     public String verticesNaoAdj() {

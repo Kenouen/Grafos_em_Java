@@ -16,10 +16,6 @@ public abstract class GrafoMap extends Grafo {
         super(vertices);
         arestas = new TreeMap<>();
     }
-    public GrafoMap(String[] vertices, Map<Integer, Aresta> arestas) {
-        super(vertices);
-        this.arestas = new TreeMap<>(arestas);
-    }
 
     public void adicionaAresta(Aresta a, int num) throws ArestaException {
         if (!vertices.contains(a.getVerticeA()))

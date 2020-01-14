@@ -8,21 +8,6 @@ public abstract class GrafoList extends Grafo {
     protected List<List<String>> arestas;
     protected List<Aresta> arestas1;
 
-    public GrafoList(String[] vertice) {
-        super(vertice);
-        arestas = new ArrayList<>();
-        arestas1 = new ArrayList<>();
-//        for (int i = 0; i < vertice.length; i ++) {
-//            String[] array = new String[vertice.length];
-//            Arrays.fill(array, "-");
-//            for (int j = i; j < vertice.length; j ++) array[j] = "0";
-//            arestas.add(new ArrayList<>(Arrays.asList(array)));
-//        }
-    }
-    public GrafoList(String[] vertice, String[][] arestas) throws MatrizException {
-        super(vertice);
-        this.arestas = new ArrayList<>();
-        arestas1 = new ArrayList<>();
 //        if (vertice.length != arestas.length)
 //            throw new MatrizException(String.format("Matriz passada não possui tamanho %d", vertice.length));
 //        for (String[] i : arestas)
@@ -35,6 +20,10 @@ public abstract class GrafoList extends Grafo {
 //                    this.arestas1.add(new Aresta(vertices.get(i), vertices.get(j)));
 //            }
 //        }
+    public GrafoList(String[] vertice) throws MatrizException {
+        super(vertice);
+        this.arestas = new ArrayList<>();
+        arestas1 = new ArrayList<>();
     }
 
     @Override
@@ -95,7 +84,6 @@ public abstract class GrafoList extends Grafo {
         }
         if (!cond) throw new ArestaException(String.format("Aresta %s inválida! ela não existe nas lista de arestas!", a));
     }
-
     @Override
     public String toString() {
         StringBuilder aux = new StringBuilder("  " + String.join(" ", vertices) + "\n");
@@ -104,5 +92,60 @@ public abstract class GrafoList extends Grafo {
             aux.append(String.join(" ", arestas.get(i))).append("\n");
         }
         return aux.toString();
+    }
+    public String verticeNaoAdj() {
+        List<String> AUX = new ArrayList<>();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = i; j < vertices.size(); j ++) {
+                if (arestas.get(i).get(j).equals("0")) {
+                    AUX.add(vertices.get(i) + "-" + vertices.get(j));
+                }
+            }
+        }
+        return String.join(", ", AUX);
+    }
+    public boolean haCiclo() {
+        for (int i = 0; i < vertices.size(); i ++) {
+            if (!arestas.get(i).get(i).equals("0")) return true;
+        }
+        return false;
+    }
+    public boolean haArestasParalelas() {
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = i; j < vertices.size(); j ++) {
+                int AUX = Integer.parseInt(arestas.get(i).get(j));
+                if (AUX >= 2) return true;
+            }
+        }
+        return false;
+    }
+    public int grau(String vertice) {
+        String[] AUX = verticesIncidentes(vertice).split(", ");
+        return AUX.length;
+    }
+    public String verticesIncidentes(String vertice) {
+        List<String> AUX = new ArrayList<>();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = i; j < vertices.size(); j ++) {
+                if (i == vertices.indexOf(vertice)) {
+                    if (Integer.parseInt(arestas.get(i).get(j)) >= 1) {
+                        for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++) AUX.add(vertices.get(j));
+                    }
+                }
+                else if (j == vertices.indexOf(vertice)) {
+                    if (Integer.parseInt(arestas.get(i).get(j)) >= 1) {
+                        for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++) AUX.add(vertices.get(i));
+                    }
+                }
+            }
+        }
+        return String.join(", ", AUX);
+    }
+    public boolean ehCompleto() {
+        for (String v : vertices) {
+            List<String> verticesV = Arrays.asList(verticesIncidentes(v).split(", "));
+            if (!(verticesV.size() >= vertices.size() - 1)) return false;
+        }
+        return true;
     }
 }

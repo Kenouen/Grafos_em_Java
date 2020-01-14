@@ -1,7 +1,12 @@
 package br.edu.ifpb;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.Arrays;
 import br.edu.ifpb.Aresta;
 
 public abstract class GrafoMap extends Grafo {
@@ -60,6 +65,10 @@ public abstract class GrafoMap extends Grafo {
         }
         return false;
     }
+    public int grau(String vertice) {
+        String[] AUX = verticesIncidentes(vertice).split(", ");
+        return AUX.length;
+    }
     public boolean haArestasParalelas() {
         for (int i : arestas.keySet()) {
             for (int j : arestas.keySet()) {
@@ -90,7 +99,6 @@ public abstract class GrafoMap extends Grafo {
         }
         return true;
     }
-
     @Override
     public String toString() {
         String aux = String.join(", ", vertices);

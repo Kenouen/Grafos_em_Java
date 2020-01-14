@@ -1,6 +1,12 @@
 package br.edu.ifpb;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class GrafoMapDir extends GrafoMap {
     public GrafoMapDir(String[] vertices) { super(vertices); }
@@ -27,6 +33,11 @@ public class GrafoMapDir extends GrafoMap {
             }
         }
         return false;
+    }
+    @Override
+    public int grau(String vertice) {
+        String[] AUX = verticesIncidentes(vertice).split(", ");
+        return AUX.length;
     }
     @Override
     public String verticesIncidentes(String vertice) {

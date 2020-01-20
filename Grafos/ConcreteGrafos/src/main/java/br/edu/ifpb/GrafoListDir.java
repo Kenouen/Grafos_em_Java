@@ -1,5 +1,6 @@
 package br.edu.ifpb;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,5 +62,56 @@ public class GrafoListDir extends GrafoList {
             }
         }
         if (!cond) throw new ArestaException(String.format("Aresta %s inválida! ela não existe nas lista de arestas!", a));
+    }
+
+    public String verticeNaoAdj() {
+        List<String> AUX = new ArrayList<>();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = 0; j < vertices.size(); j ++) {
+                if (arestas.get(i).get(j).equals("0")) AUX.add(vertices.get(i) + "-" + vertices.get(j));
+            }
+        }
+        return String.join(" ,", AUX);
+    }
+    @Override
+    public boolean haArestasParalelas() {
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = 0; j < vertices.size(); j ++) {
+                int AUX = Integer.parseInt(arestas.get(i).get(j));
+                if (AUX >= 2) return true;
+            }
+        }
+        return false;
+    }
+    @Override
+    public String verticesIncidentes(String vertice) {
+        List<String> AUX = new ArrayList();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = 0; j < vertices.size(); j ++) {
+                if (vertices.get(j).equals(vertice)) {
+                    for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++)
+                        AUX.add(vertices.get(i));
+                }
+            }
+        }
+        return String.join(" ,", AUX);
+    }
+    public String verticesIncidentesReverso(String vertice) {
+        List<String> AUX = new ArrayList();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = 0; j < vertices.size(); j ++) {
+                if (vertices.get(i).equals(vertice)) {
+                    for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++)
+                        AUX.add(vertices.get(j));
+                }
+            }
+        }
+        return String.join(" ,", AUX);
+    }
+    @Override
+    public int grau(String vertice) {
+        String[] AUX = verticesIncidentes(vertice).split(" ,");
+        String[] AUX1 = verticesIncidentesReverso(vertice).split(" ,");
+        return AUX.length + AUX1.length;
     }
 }

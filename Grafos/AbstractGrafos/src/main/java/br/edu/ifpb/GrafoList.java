@@ -82,15 +82,16 @@ public class GrafoList extends Grafo {
         return aux.toString();
     }
     public String verticeNaoAdj() {
-        List<String> AUX = new ArrayList<>();
+        StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = i; j < vertices.size(); j ++) {
                 if (arestas.get(i).get(j).equals("0")) {
-                    AUX.add(vertices.get(i) + "-" + vertices.get(j));
+                    if (j != vertices.size() - 1) AUX.append(vertices.get(i) + "-" + vertices.get(j) + " ,");
+                    else AUX.append(vertices.get(i) + "-" + vertices.get(j));
                 }
             }
         }
-        return String.join(", ", AUX);
+        return AUX.toString();
     }
     public boolean haCiclo() {
         for (int i = 0; i < vertices.size(); i ++) {
@@ -112,22 +113,29 @@ public class GrafoList extends Grafo {
         return AUX.length;
     }
     public String verticesIncidentes(String vertice) {
-        List<String> AUX = new ArrayList<>();
+        StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = i; j < vertices.size(); j ++) {
+                int AUX1 = Integer.parseInt(arestas.get(i).get(j));
                 if (i == vertices.indexOf(vertice)) {
-                    if (Integer.parseInt(arestas.get(i).get(j)) >= 1) {
-                        for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++) AUX.add(vertices.get(j));
+                    if (AUX1 >= 1) {
+                        for (int k = 0; k < AUX1; k ++) {
+                            if (k != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
+                            else AUX.append(vertices.get(j) + " ,");
+                        }
                     }
                 }
                 else if (j == vertices.indexOf(vertice)) {
-                    if (Integer.parseInt(arestas.get(i).get(j)) >= 1) {
-                        for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++) AUX.add(vertices.get(i));
+                    if (AUX1 >= 1) {
+                        for (int k = 0; k < AUX1; k ++) {
+                            if (k != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
+                            else AUX.append(vertices.get(i) + " ,");
+                        }
                     }
                 }
             }
         }
-        return String.join(", ", AUX);
+        return AUX.toString();
     }
     public boolean ehCompleto() {
         for (String v : vertices) {

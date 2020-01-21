@@ -65,13 +65,16 @@ public class GrafoListDir extends GrafoList {
     }
 
     public String verticeNaoAdj() {
-        List<String> AUX = new ArrayList<>();
+        StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = 0; j < vertices.size(); j ++) {
-                if (arestas.get(i).get(j).equals("0")) AUX.add(vertices.get(i) + "-" + vertices.get(j));
+                if (arestas.get(i).get(j).equals("0")) {
+                    if (j != vertices.size() - 1) AUX.append(vertices.get(i) + "-" + vertices.get(j) + " ,");
+                    else AUX.append(vertices.get(i) + "-" + vertices.get(j));
+                }
             }
         }
-        return String.join(" ,", AUX);
+        return AUX.toString();
     }
     @Override
     public boolean haArestasParalelas() {
@@ -83,35 +86,49 @@ public class GrafoListDir extends GrafoList {
         }
         return false;
     }
-    @Override
-    public String verticesIncidentes(String vertice) {
-        List<String> AUX = new ArrayList();
+    public String verticesIncidentes(String vertice, boolean cond) {
+        StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = 0; j < vertices.size(); j ++) {
-                if (vertices.get(j).equals(vertice)) {
-                    for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++)
-                        AUX.add(vertices.get(i));
+                int AUX1 = Integer.parseInt(arestas.get(i).get(j));
+                if (cond) {
+                    if (vertices.get(j).equals(vertice)) {
+                        for (int k = 0; k < AUX1; k ++) {
+                            if (i != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
+                            else AUX.append(vertices.get(i));
+                        }
+                    }
+                    else {
+                        if (vertices.get(i).equals(vertice)) {
+                            for (int k = 0; k < AUX1; k ++) {
+                                if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
+                                else AUX.append(vertices.get(j));
+                            }
+                        }
+                    }
                 }
             }
         }
-        return String.join(" ,", AUX);
-    }
-    public String verticesIncidentesReverso(String vertice) {
-        List<String> AUX = new ArrayList();
-        for (int i = 0; i < vertices.size(); i ++) {
-            for (int j = 0; j < vertices.size(); j ++) {
-                if (vertices.get(i).equals(vertice)) {
-                    for (int k = 0; k < Integer.parseInt(arestas.get(i).get(j)); k ++)
-                        AUX.add(vertices.get(j));
-                }
-            }
-        }
-        return String.join(" ,", AUX);
+        return AUX.toString();
     }
     @Override
     public int grau(String vertice) {
-        String[] AUX = verticesIncidentes(vertice).split(" ,");
-        String[] AUX1 = verticesIncidentesReverso(vertice).split(" ,");
+        String[] AUX = verticesIncidentes(vertice, true).split(" ,");
+        String[] AUX1 = verticesIncidentes(vertice, false).split(" ,");
         return AUX.length + AUX1.length;
+    }
+    @Override
+    public boolean ehCompleto() {
+        for (String v : vertices) {
+            List<String> AUX = new ArrayList<>(Arrays.asList(verticesIncidentes(v).split(" ,")));
+            AUX.addAll(Arrays.asList(verticesIncidentes(v, false).split(" ,")));
+            if (AUX.size() >= vertices.size() - 1) {
+                List<String> AUX1 = new ArrayList<>(vertices);
+                AUX1.remove(v);
+                if (AUX.containsAll(AUX1)) return true;
+                return false;
+            }
+        }
+        return false;
     }
 }

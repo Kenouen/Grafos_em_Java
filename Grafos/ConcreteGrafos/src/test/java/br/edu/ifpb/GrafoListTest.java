@@ -11,6 +11,7 @@ public class GrafoListTest {
         gl.adicionarAresta(new Aresta("C", "C"));
         gl.adicionarAresta(new Aresta("D", "C"));
         gl.adicionarAresta(new Aresta("C", "A"));
+        gl.adicionarAresta(new Aresta("B", "A"));
 //        gl.adicionarAresta(new Aresta("C", "A"));
 //        gl.adicionarAresta(new Aresta("C", "B"));
         System.out.println(gl.verticeNaoAdj());

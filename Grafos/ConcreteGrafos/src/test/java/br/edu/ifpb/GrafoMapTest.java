@@ -9,7 +9,7 @@ public class GrafoMapTest {
     @Test
     public void test() {
         try {
-            GrafoMapNDir gf = new GrafoMapNDir(new String[]{"A", "B", "C"});
+            GrafoMapDir gf = new GrafoMapDir(new String[]{"A", "B", "C"});
             gf.adicionaAresta(new Aresta("A", "B"), 1);
             gf.adicionaAresta(new Aresta("B", "C"), 2);
             gf.adicionaAresta(new Aresta("C", "B"), 3);

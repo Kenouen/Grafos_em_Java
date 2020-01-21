@@ -63,29 +63,6 @@ public class GrafoListDir extends GrafoList {
         }
         if (!cond) throw new ArestaException(String.format("Aresta %s inválida! ela não existe nas lista de arestas!", a));
     }
-
-    public String verticeNaoAdj() {
-        StringBuilder AUX = new StringBuilder();
-        for (int i = 0; i < vertices.size(); i ++) {
-            for (int j = 0; j < vertices.size(); j ++) {
-                if (arestas.get(i).get(j).equals("0")) {
-                    if (j != vertices.size() - 1) AUX.append(vertices.get(i) + "-" + vertices.get(j) + " ,");
-                    else AUX.append(vertices.get(i) + "-" + vertices.get(j));
-                }
-            }
-        }
-        return AUX.toString();
-    }
-    @Override
-    public boolean haArestasParalelas() {
-        for (int i = 0; i < vertices.size(); i ++) {
-            for (int j = 0; j < vertices.size(); j ++) {
-                int AUX = Integer.parseInt(arestas.get(i).get(j));
-                if (AUX >= 2) return true;
-            }
-        }
-        return false;
-    }
     public String verticesIncidentes(String vertice, boolean cond) {
         StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
@@ -98,12 +75,12 @@ public class GrafoListDir extends GrafoList {
                             else AUX.append(vertices.get(i));
                         }
                     }
-                    else {
-                        if (vertices.get(i).equals(vertice)) {
-                            for (int k = 0; k < AUX1; k ++) {
-                                if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
-                                else AUX.append(vertices.get(j));
-                            }
+                }
+                else {
+                    if (vertices.get(i).equals(vertice)) {
+                        for (int k = 0; k < AUX1; k ++) {
+                            if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
+                            else AUX.append(vertices.get(j));
                         }
                     }
                 }

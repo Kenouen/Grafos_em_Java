@@ -81,14 +81,17 @@ public class GrafoList extends Grafo {
         }
         return aux.toString();
     }
-    public String verticeNaoAdj() {
+    public String verticeNaoAdj(boolean cond) {
         StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
-            for (int j = i; j < vertices.size(); j ++) {
+            int ini = i;
+            if (cond) ini = 0;
+            for (int j = ini; j < vertices.size(); j ++) {
                 if (arestas.get(i).get(j).equals("0")) {
                     if (j != vertices.size() - 1) AUX.append(vertices.get(i) + "-" + vertices.get(j) + " ,");
                     else AUX.append(vertices.get(i) + "-" + vertices.get(j));
                 }
+                if (i != vertices.size() - 1 && j == vertices.size() - 1) AUX.append(" ,");
             }
         }
         return AUX.toString();
@@ -99,9 +102,11 @@ public class GrafoList extends Grafo {
         }
         return false;
     }
-    public boolean haArestasParalelas() {
+    public boolean haArestasParalelas(boolean cond) {
         for (int i = 0; i < vertices.size(); i ++) {
-            for (int j = i; j < vertices.size(); j ++) {
+            int ini = i;
+            if (cond) ini = 0;
+            for (int j = ini; j < vertices.size(); j ++) {
                 int AUX = Integer.parseInt(arestas.get(i).get(j));
                 if (AUX >= 2) return true;
             }
@@ -121,7 +126,7 @@ public class GrafoList extends Grafo {
                     if (AUX1 >= 1) {
                         for (int k = 0; k < AUX1; k ++) {
                             if (k != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
-                            else AUX.append(vertices.get(j) + " ,");
+                            else AUX.append(vertices.get(j));
                         }
                     }
                 }
@@ -129,7 +134,7 @@ public class GrafoList extends Grafo {
                     if (AUX1 >= 1) {
                         for (int k = 0; k < AUX1; k ++) {
                             if (k != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
-                            else AUX.append(vertices.get(i) + " ,");
+                            else AUX.append(vertices.get(i));
                         }
                     }
                 }

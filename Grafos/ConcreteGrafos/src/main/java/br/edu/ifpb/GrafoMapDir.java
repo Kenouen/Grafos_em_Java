@@ -1,6 +1,5 @@
 package br.edu.ifpb;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +40,7 @@ public class GrafoMapDir extends GrafoMap {
         }
         return String.join(", ", vertices);
     }
-    public String verticesLigantes(String vertice) {
+    public String verticesAdjacentes(String vertice) {
         List<String> vertices = new ArrayList<>();
         for (int i : arestas.keySet()) {
             if (arestas.get(i).getVerticeA().equals(vertice)) vertices.add(arestas.get(i).getVerticeB().toString());
@@ -53,7 +52,7 @@ public class GrafoMapDir extends GrafoMap {
         Map<String, List<String>> AUXS = new HashMap();
         for (String v : vertices) {
             List<String> AUX = new ArrayList<>(Arrays.asList(verticesIncidentes(v).split(", ")));
-            AUX.addAll(Arrays.asList(verticesLigantes(v).split(", ")));
+            AUX.addAll(Arrays.asList(verticesAdjacentes(v).split(", ")));
             AUXS.put(v, AUX);
         }
         for (String a : AUXS.keySet()) {

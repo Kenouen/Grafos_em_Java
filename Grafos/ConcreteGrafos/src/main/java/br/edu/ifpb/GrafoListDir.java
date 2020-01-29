@@ -63,25 +63,30 @@ public class GrafoListDir extends GrafoList {
         }
         if (!cond) throw new ArestaException(String.format("Aresta %s inválida! ela não existe nas lista de arestas!", a));
     }
-    public String verticesIncidentes(String vertice, boolean cond) {
+    public String verticesIncidentes(String vertice) {
         StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = 0; j < vertices.size(); j ++) {
                 int AUX1 = Integer.parseInt(arestas.get(i).get(j));
-                if (cond) {
-                    if (vertices.get(j).equals(vertice)) {
-                        for (int k = 0; k < AUX1; k ++) {
-                            if (i != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
-                            else AUX.append(vertices.get(i));
-                        }
+                if (vertices.get(j).equals(vertice)) {
+                    for (int k = 0; k < AUX1; k ++) {
+                        if (i != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
+                        else AUX.append(vertices.get(i));
                     }
                 }
-                else {
-                    if (vertices.get(i).equals(vertice)) {
-                        for (int k = 0; k < AUX1; k ++) {
-                            if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
-                            else AUX.append(vertices.get(j));
-                        }
+            }
+        }
+        return AUX.toString();
+    }
+    public String verticesAdjacentes(String vertice) {
+        StringBuilder AUX = new StringBuilder();
+        for (int i = 0; i < vertices.size(); i ++) {
+            for (int j = 0; j < vertices.size(); j ++) {
+                int AUX1 = Integer.parseInt(arestas.get(i).get(j));
+                if (vertices.get(i).equals(vertice)) {
+                    for (int k = 0; k < AUX1; k ++) {
+                        if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
+                        else AUX.append(vertices.get(j));
                     }
                 }
             }
@@ -89,23 +94,26 @@ public class GrafoListDir extends GrafoList {
         return AUX.toString();
     }
     @Override
-    public int grau(String vertice) {
-        String[] AUX = verticesIncidentes(vertice, true).split(" ,");
-        String[] AUX1 = verticesIncidentes(vertice, false).split(" ,");
-        return AUX.length + AUX1.length;
-    }
-    @Override
     public boolean ehCompleto() {
-        for (String v : vertices) {
-            List<String> AUX = new ArrayList<>(Arrays.asList(verticesIncidentes(v).split(" ,")));
-            AUX.addAll(Arrays.asList(verticesIncidentes(v, false).split(" ,")));
-            if (AUX.size() >= vertices.size() - 1) {
-                List<String> AUX1 = new ArrayList<>(vertices);
-                AUX1.remove(v);
-                if (AUX.containsAll(AUX1)) return true;
-                return false;
+        boolean cond = true;
+        int i = 0;
+        while (cond) {
+            if (vertices.size() - 1 == i) break;
+            String vertice = vertices.get(i);
+            List<String> AUX = Arrays.asList(verticesIncidentes(vertice).split(" ,"));
+            List<String> AUX1 = new ArrayList<>(vertices);
+            AUX1.remove(vertice);
+            if (!AUX.containsAll(AUX1)) {
+                cond = false;
+                break;
             }
+            AUX = Arrays.asList(verticesAdjacentes(vertice).split(" ,"));
+            if (!AUX.containsAll(AUX1)) {
+                cond = false;
+                break;
+            }
+            i ++;
         }
-        return false;
+        return cond;
     }
 }

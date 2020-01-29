@@ -88,10 +88,9 @@ public class GrafoList extends Grafo {
             if (cond) ini = 0;
             for (int j = ini; j < vertices.size(); j ++) {
                 if (arestas.get(i).get(j).equals("0")) {
-                    if (j != vertices.size() - 1) AUX.append(vertices.get(i) + "-" + vertices.get(j) + " ,");
-                    else AUX.append(vertices.get(i) + "-" + vertices.get(j));
+                    AUX.append(vertices.get(i) + "-" + vertices.get(j));
+                    if (j != vertices.size() - 1 || i != vertices.size() - 1) AUX.append(" ,");
                 }
-                if (i != vertices.size() - 1 && j == vertices.size() - 1) AUX.append(" ,");
             }
         }
         return AUX.toString();

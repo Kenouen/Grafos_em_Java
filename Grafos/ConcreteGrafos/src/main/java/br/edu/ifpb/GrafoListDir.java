@@ -63,19 +63,18 @@ public class GrafoListDir extends GrafoList {
         }
         if (!cond) throw new ArestaException(String.format("Aresta %s inválida! ela não existe nas lista de arestas!", a));
     }
+    @Override
     public String verticesIncidentes(String vertice) {
         StringBuilder AUX = new StringBuilder();
         for (int i = 0; i < vertices.size(); i ++) {
             for (int j = 0; j < vertices.size(); j ++) {
                 int AUX1 = Integer.parseInt(arestas.get(i).get(j));
                 if (vertices.get(j).equals(vertice)) {
-                    for (int k = 0; k < AUX1; k ++) {
-                        if (i != AUX1 - 1) AUX.append(vertices.get(i) + " ,");
-                        else AUX.append(vertices.get(i));
-                    }
+                    for (int k = 0; k < AUX1; k ++) AUX.append(vertices.get(i) + " ,");
                 }
             }
         }
+        for (int i = 0; i < 2; i ++) AUX.deleteCharAt(AUX.toString().length() - 1);
         return AUX.toString();
     }
     public String verticesAdjacentes(String vertice) {
@@ -84,13 +83,11 @@ public class GrafoListDir extends GrafoList {
             for (int j = 0; j < vertices.size(); j ++) {
                 int AUX1 = Integer.parseInt(arestas.get(i).get(j));
                 if (vertices.get(i).equals(vertice)) {
-                    for (int k = 0; k < AUX1; k ++) {
-                        if (i != AUX1 - 1) AUX.append(vertices.get(j) + " ,");
-                        else AUX.append(vertices.get(j));
-                    }
+                    for (int k = 0; k < AUX1; k ++) AUX.append(vertices.get(j) + " ,");
                 }
             }
         }
+        for (int i = 0; i < 2; i ++) AUX.deleteCharAt(AUX.toString().length() - 1);
         return AUX.toString();
     }
     @Override

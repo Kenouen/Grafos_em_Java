@@ -24,7 +24,7 @@ public class GrafoListTest {
         System.out.println(gl.haCiclo());
         System.out.println(gl.haArestasParalelas(true));
         System.out.println(gl.grau("C"));
-        System.out.println(gl.verticesAdjacentes("C"));
+        System.out.println(gl.verticesIncidentes("C"));
         System.out.println(gl.ehCompleto());
     }
 }
